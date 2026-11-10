@@ -501,6 +501,36 @@ html,body{overflow-x:clip}
 @keyframes introOut{0%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-18px) scale(1.12);filter:blur(4px)}}
 @keyframes introFail{to{visibility:hidden}}
 .intro-lock{overflow:hidden}
+/* agendamento */
+.book{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2.4vw,28px);align-items:stretch;max-width:1080px;margin:0 auto}
+.book__hello{position:relative;overflow:hidden;background:var(--ink);color:#fff;border-radius:var(--rad);padding:clamp(30px,4vw,54px);display:flex;flex-direction:column;justify-content:center;gap:16px}
+.book__orchid{position:absolute;right:-40px;bottom:-40px;width:240px;opacity:.08;filter:invert(1)}
+.book__sig{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:clamp(1.9rem,3vw,2.5rem);line-height:1.05;color:var(--lav)}
+.book__txt{color:rgba(255,255,255,.82);font-size:1rem;line-height:1.6;max-width:30em}
+.book__list{list-style:none;margin:2px 0;padding:0;display:grid;gap:10px}
+.book__list li{display:flex;align-items:center;gap:12px;font-size:.95rem;color:#fff}
+.book__list li::before{content:"";width:8px;height:8px;border:1px solid var(--lav);flex:none}
+.book__end{font-family:var(--f-display);font-style:italic;font-size:1.35rem;color:#fff}
+.book__hours{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);padding-top:16px;border-top:1px solid var(--line-l)}
+.book__form{background:#fff;border-radius:var(--rad);padding:clamp(28px,4vw,50px);display:flex;flex-direction:column;justify-content:center;gap:24px}
+.fld{display:flex;flex-direction:column;gap:8px;min-width:0}
+.fld-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.fld label{font-size:.66rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3)}
+.fld input,.fld select{width:100%;min-height:52px;border:1px solid var(--line);border-radius:8px;background:var(--bg);padding:0 16px;font:inherit;font-size:16px;color:var(--ink);transition:border-color .6s var(--ease),background .6s var(--ease),box-shadow .6s var(--ease);-webkit-appearance:none;appearance:none}
+.fld input::placeholder{color:#9c97a3}
+.fld input:focus,.fld select:focus{outline:none;border-color:var(--rose);background:#fff;box-shadow:0 0 0 3px rgba(168,142,155,.15)}
+.fld select:disabled{opacity:.55}
+.sel{position:relative}
+.sel::after{content:"";position:absolute;right:18px;top:50%;width:7px;height:7px;border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);transform:translateY(-70%) rotate(45deg);pointer-events:none}
+.sel select{padding-right:42px}
+.fld.bad input,.fld.bad select{border-color:#b4566b}
+.err{font-size:.76rem;color:#9b3f54;min-height:0}
+.err:empty{display:none}
+.book__btn{width:100%;min-height:56px}
+.book__btn svg{width:18px;height:18px}
+.book__btn:hover svg{transform:none}
+.book__note{font-size:.78rem;color:var(--ink-3);text-align:center}
+.book__fallback{font-size:.82rem;text-align:center;color:var(--rose)}
 /* ================= RESPONSIVO ================= */
 @media (max-width:1080px){
   .nav{display:none}
@@ -535,6 +565,7 @@ html,body{overflow-x:clip}
   .case__grid--b>:last-child{grid-column:1/-1;max-width:480px;width:100%;justify-self:center}
   .case__foot{grid-template-columns:minmax(0,1fr)}
   .exp{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .book{grid-template-columns:minmax(0,1fr)}
   .exp figure:first-child{grid-column:1/-1}
   .exp figure:first-child .ph{aspect-ratio:16/12}
   .map{min-height:340px}
@@ -576,6 +607,7 @@ html,body{overflow-x:clip}
   .reviews{grid-template-columns:minmax(0,1fr)}
   .ig{grid-template-columns:repeat(2,minmax(0,1fr))}
   .phone a{font-size:1.45rem}
+  .fld-row{grid-template-columns:minmax(0,1fr)}
   .info__ctas .btn{flex:1 1 100%}
   .foot__grid{grid-template-columns:minmax(0,1fr)}
   .lb{padding-left:12px;padding-right:12px}
@@ -611,7 +643,7 @@ html,body{overflow-x:clip}
       <a href="#resultados">Resultados</a>
       <a href="#contato">Contato</a>
     </nav>
-    <a class="btn" data-wa="geral" href="https://wa.me/5583996354582" target="_blank" rel="noopener">Agendar avaliação</a>
+    <a class="btn" href="#agendamento">Agendar avaliação</a>
     <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
   </div>
 </header>
@@ -622,7 +654,7 @@ html,body{overflow-x:clip}
   <a class="m" href="#metodo">Método SG</a>
   <a class="m" href="#resultados">Resultados</a>
   <a class="m" href="#contato">Contato</a>
-  <a class="btn" data-wa="geral" href="https://wa.me/5583996354582" target="_blank" rel="noopener">Agendar avaliação</a>
+  <a class="btn" href="#agendamento">Agendar avaliação</a>
   <small>Av. Gov. Flávio Ribeiro Coutinho, 50 · Manaíra · João Pessoa</small>
 </nav>
 
@@ -636,7 +668,7 @@ html,body{overflow-x:clip}
       <h1><span class="ln"><span>Realce sua beleza.</span></span><span class="ln"><span>Preserve sua <em>essência.</em></span></span></h1>
       <p class="hero__sub rv" style="--d:.35s">Uma experiência de estética e harmonização facial que une técnica, planejamento e naturalidade para valorizar o que você tem de mais bonito.</p>
       <div class="hero__ctas rv" style="--d:.5s">
-        <a class="btn" data-wa="geral" href="https://wa.me/5583996354582" target="_blank" rel="noopener">Agendar minha avaliação <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+        <a class="btn" href="#agendamento">Agendar minha avaliação <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
         <a class="btn btn--ghost" href="#clinica">Conheça a clínica</a>
       </div>
       <div class="hero__meta rv" style="--d:.65s">
@@ -1020,6 +1052,57 @@ html,body{overflow-x:clip}
   </div>
 </section>
 
+<!-- ===================== 10b · AGENDAMENTO ===================== -->
+<section class="sec sec--lav" id="agendamento">
+  <div class="wrap">
+    <div class="sec__head">
+      <div class="stack">
+        <span class="eyebrow rv">Agendamento</span>
+        <h2 class="rv" style="--d:.05s">Seja muito <em>bem-vinda.</em></h2>
+      </div>
+      <p class="lead rv" style="--d:.1s">Preencha abaixo e finalize seu agendamento direto no WhatsApp da clínica.</p>
+    </div>
+    <div class="book">
+      <div class="book__hello rv">
+        <img class="book__orchid" src="assets/img/orquidea.png" alt="" aria-hidden="true">
+        <p class="book__sig">Dra. Sthefany Guerra</p>
+        <p class="book__txt">Sou Dra. Sthefany Guerra, especialista em Harmonização Facial, estética avançada e laser.</p>
+        <p class="book__txt">Para um atendimento exclusivo, informe:</p>
+        <ul class="book__list"><li>Nome completo</li><li>Procedimento de interesse</li><li>Dia e horário desejados</li></ul>
+        <p class="book__end">Será um prazer atender você.</p>
+        <small class="book__hours">Seg. a sex. 09h–17h30 · Sáb. 09h–12h · Somente com hora marcada</small>
+      </div>
+      <form class="book__form rv" id="bookForm" style="--d:.1s" novalidate>
+        <div class="fld">
+          <label for="bkNome">Nome completo</label>
+          <input id="bkNome" name="nome" type="text" autocomplete="name" placeholder="Seu nome completo" required minlength="3">
+          <span class="err" id="errNome" role="alert"></span>
+        </div>
+        <div class="fld">
+          <label for="bkProc">Procedimento de interesse</label>
+          <div class="sel"><select id="bkProc" name="procedimento" required><option value="" disabled selected>Selecione um procedimento</option><option>Avaliação — ainda não sei qual procedimento</option><optgroup label="Harmonização facial"><option>Método SG Full Face</option><option>Preenchimento facial</option><option>Preenchimento labial</option><option>Toxina botulínica (Botox®)</option><option>Bioestimuladores de colágeno</option></optgroup><optgroup label="Estética e cuidados com a pele"><option>Limpeza de pele</option><option>Protocolos faciais personalizados</option><option>Alta frequência</option><option>Tratamentos com laser</option></optgroup><optgroup label="Estética do olhar e micropigmentação"><option>Brow lamination</option><option>Lash lifting</option><option>Nanopigmentação de sobrancelhas</option><option>Micropigmentação labial</option><option>Remoção de micropigmentação</option></optgroup></select></div>
+          <span class="err" id="errProc" role="alert"></span>
+        </div>
+        <div class="fld-row">
+          <div class="fld">
+            <label for="bkDia">Dia desejado</label>
+            <input id="bkDia" name="dia" type="date" required>
+            <span class="err" id="errDia" role="alert"></span>
+          </div>
+          <div class="fld">
+            <label for="bkHora">Horário desejado</label>
+            <div class="sel"><select id="bkHora" name="horario" required disabled><option value="">Escolha o dia primeiro</option></select></div>
+            <span class="err" id="errHora" role="alert"></span>
+          </div>
+        </div>
+        <button class="btn book__btn" type="submit"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M19.05 4.91A9.82 9.82 0 0 0 12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01Zm-7.01 15.24c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c.01 4.54-3.68 8.23-8.22 8.23Z"/></svg>Finalizar no WhatsApp</button>
+        <p class="book__note" id="bookNote">O horário é confirmado pela equipe pelo WhatsApp.</p>
+        <a class="book__fallback" id="bookLink" href="https://wa.me/5583996354582" target="_blank" rel="noopener" hidden>Se o WhatsApp não abriu, toque aqui para enviar a mensagem</a>
+      </form>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== 11 · CONTATO ===================== -->
 <section class="sec sec--bg" id="contato">
   <div class="wrap">
@@ -1067,7 +1150,7 @@ html,body{overflow-x:clip}
     <span class="eyebrow rv">Clínica Plena</span>
     <h2 class="rv" style="--d:.05s">Valorize sua beleza.<br><em>Cuide de você.</em></h2>
     <p class="rv" style="--d:.1s">Estamos esperando por você para uma experiência de cuidado, atenção e naturalidade.</p>
-    <div class="rv" style="--d:.15s"><a class="btn" data-wa="final" href="https://wa.me/5583996354582" target="_blank" rel="noopener">Agendar minha avaliação <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a></div>
+    <div class="rv" style="--d:.15s"><a class="btn" href="#agendamento">Agendar minha avaliação <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a></div>
   </div>
 </section>
 </main>
@@ -1079,7 +1162,7 @@ html,body{overflow-x:clip}
         <img src="assets/img/logo-plena-branco.png" alt="Plena — Estética Facial e Corporal" width="640" height="213" loading="lazy">
         <p>Estética avançada e harmonização facial em João Pessoa. Dra. Sthefany Guerra, Enfermeira Esteta.</p>
       </div>
-      <div><h4>Navegação</h4><ul><li><a href="#inicio">Início</a></li><li><a href="#clinica">A Clínica</a></li><li><a href="#procedimentos">Procedimentos</a></li><li><a href="#metodo">Método SG</a></li><li><a href="#resultados">Resultados</a></li><li><a href="#contato">Contato</a></li></ul></div>
+      <div><h4>Navegação</h4><ul><li><a href="#inicio">Início</a></li><li><a href="#clinica">A Clínica</a></li><li><a href="#procedimentos">Procedimentos</a></li><li><a href="#metodo">Método SG</a></li><li><a href="#resultados">Resultados</a></li><li><a href="#agendamento">Agendamento</a></li><li><a href="#contato">Contato</a></li></ul></div>
       <div><h4>Contato</h4><ul><li><a data-wa="geral" href="https://wa.me/5583996354582" target="_blank" rel="noopener">WhatsApp (83) 99635-4582</a></li><li><a href="https://www.instagram.com/clinica_plena_estetica/" target="_blank" rel="noopener">@clinica_plena_estetica</a></li><li><a href="https://www.instagram.com/dra.sthefanyguerra/" target="_blank" rel="noopener">@dra.sthefanyguerra</a></li><li>Av. Gov. Flávio Ribeiro Coutinho, 50 · Manaíra · João Pessoa — PB</li></ul></div>
       <div><h4>Horários</h4><ul><li>Seg. a sex. · 09h às 17h30</li><li>Sábado · 09h às 12h</li><li>Domingo · Fechado</li><li>Somente com hora marcada</li></ul></div>
     </div>
@@ -1286,6 +1369,44 @@ html,body{overflow-x:clip}
   });
   /* pré-carrega as próximas fotos em segundo plano */
   window.addEventListener('load',function(){ var q=[].slice.call(d.querySelectorAll('img[loading="lazy"]')); (function next(){ var batch=q.splice(0,4); if(!batch.length)return; batch.forEach(function(im){ im.loading='eager' }); setTimeout(next,350) })() });
+
+  /* agendamento → WhatsApp */
+  (function(){
+    var f=d.getElementById('bookForm'); if(!f) return;
+    var nome=d.getElementById('bkNome'), proc=d.getElementById('bkProc'), dia=d.getElementById('bkDia'), hora=d.getElementById('bkHora'), link=d.getElementById('bookLink');
+    function pad(n){ return String(n).padStart(2,'0') }
+    var now=new Date(); dia.min=now.getFullYear()+'-'+pad(now.getMonth()+1)+'-'+pad(now.getDate());
+    function parse(v){ var p=v.split('-'); return new Date(+p[0],+p[1]-1,+p[2]) }
+    function err(id,msg){ var e=d.getElementById(id); e.textContent=msg||''; e.parentNode.classList.toggle('bad',!!msg) }
+    function slots(){
+      hora.innerHTML=''; err('errDia','');
+      if(!dia.value){ hora.disabled=true; hora.innerHTML='<option value="">Escolha o dia primeiro</option>'; return }
+      var dt=parse(dia.value), wd=dt.getDay(), list=[];
+      if(wd===0){ hora.disabled=true; hora.innerHTML='<option value="">Fechado aos domingos</option>'; err('errDia','Aos domingos a clínica não abre. Escolha outro dia.'); return }
+      var end=wd===6?11*60+30:17*60, today=dt.toDateString()===new Date().toDateString(), nowMin=new Date().getHours()*60+new Date().getMinutes();
+      for(var m=9*60;m<=end;m+=30){ if(today&&m<=nowMin+30) continue; list.push(pad(Math.floor(m/60))+'h'+pad(m%60)) }
+      if(!list.length){ hora.disabled=true; hora.innerHTML='<option value="">Sem horários neste dia</option>'; err('errDia','Não há mais horários hoje. Escolha outro dia.'); return }
+      hora.disabled=false; hora.innerHTML='<option value="" disabled selected>Selecione</option>'+list.map(function(t){ return '<option>'+t+'</option>' }).join('');
+    }
+    dia.addEventListener('change',slots);
+    [nome,proc,hora].forEach(function(el){ el.addEventListener('input',function(){ err(el===nome?'errNome':el===proc?'errProc':'errHora','') }) });
+    f.addEventListener('submit',function(e){
+      e.preventDefault(); var ok=true;
+      if(nome.value.trim().split(/\s+/).length<2){ err('errNome','Informe seu nome completo.'); ok=false }
+      if(!proc.value){ err('errProc','Selecione o procedimento de interesse.'); ok=false }
+      if(!dia.value){ err('errDia','Escolha o dia desejado.'); ok=false }
+      else if(dia.value<dia.min){ err('errDia','Escolha uma data a partir de hoje.'); ok=false }
+      if(!hora.value){ if(dia.value&&!d.getElementById('errDia').textContent) err('errHora','Escolha o horário desejado.'); ok=false }
+      if(!ok){ var b=f.querySelector('.bad input,.bad select'); if(b) b.focus(); return }
+      var dt=parse(dia.value), dTxt=dt.toLocaleDateString('pt-BR',{weekday:'long',day:'2-digit',month:'2-digit',year:'numeric'});
+      var msg='Olá, Dra. Sthefany! Gostaria de agendar um atendimento na Clínica Plena.\n\n'+
+        '▫️ Nome completo: '+nome.value.trim()+'\n'+
+        '▫️ Procedimento de interesse: '+proc.value+'\n'+
+        '▫️ Dia e horário desejados: '+dTxt+', às '+hora.value+'\n\n'+
+        'Aguardo a confirmação. Obrigada! 💎';
+      link.href='https://wa.me/5583996354582?text='+encodeURIComponent(msg); link.hidden=false; link.click();
+    });
+  })();
 
   /* map (carrega sob demanda) */
   d.getElementById('loadMap').addEventListener('click',function(){
